@@ -3,74 +3,128 @@
     ViewData["Title"] = "Manage Devices";
 }
 
-<h2>Manage Devices for @Model.empName</h2>
-<p><a href="/Admin/CreateDevice?empId=@Model.empId&deviceType=Laptop">Add Laptop</a> |
-   <a href="/Admin/CreateDevice?empId=@Model.empId&deviceType=Keyboard">Add Keyboard</a> |
-   <a href="/Admin/CreateDevice?empId=@Model.empId&deviceType=Mouse">Add Mouse</a></p>
+<!-- Bootstrap CSS CDN -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-<h3>Laptops</h3>
-<table>
-    <tr>
-        <th>Host Name</th>
-        <th>Model</th>
-        <th>Status</th>
-        <th>Actions</th>
-    </tr>
-    @foreach (var laptop in Model.laptops ?? new List<Models.Laptop>())
-    {
-        <tr>
-            <td>@laptop.lapHostName</td>
-            <td>@laptop.lapModel</td>
-            <td>@laptop.status</td>
-            <td>
-                <a href="/Admin/EditDevice?empId=@Model.empId&deviceType=Laptop&id=@laptop.lapHostName">Edit</a> |
-                <a href="/Admin/DeleteDevice?empId=@Model.empId&deviceType=Laptop&id=@laptop.lapHostName">Delete</a>
-            </td>
-        </tr>
-    }
-</table>
+<!-- Header -->
+<header class="bg-dark text-white py-3">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <h1 class="h4 mb-0">Assest Management Service</h1>
+            <nav>
+                <a href="/" class="text-white text-decoration-none me-3">Home</a>
+                <a href="/Account/Logout" class="text-white text-decoration-none">Logout</a>
+            </nav>
+        </div>
+    </div>
+</header>
 
-<h3>Keyboards</h3>
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Brand</th>
-        <th>Status</th>
-        <th>Actions</th>
-    </tr>
-    @foreach (var keyboard in Model.keyboards ?? new List<Models.Keyboard>())
-    {
-        <tr>
-            <td>@keyboard.keyId</td>
-            <td>@keyboard.keyBrand</td>
-            <td>@keyboard.status</td>
-            <td>
-                <a href="/Admin/EditDevice?empId=@Model.empId&deviceType=Keyboard&id=@keyboard.keyId">Edit</a> |
-                <a href="/Admin/DeleteDevice?empId=@Model.empId&deviceType=Keyboard&id=@keyboard.keyId">Delete</a>
-            </td>
-        </tr>
-    }
-</table>
+<!-- Main Content -->
+<main class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <h2 class="text-center mb-4">Manage Devices for @Model.empName</h2>
+            <p class="text-center">
+                <a href="/Admin/CreateDevice?empId=@Model.empId&deviceType=Laptop" class="btn btn-primary me-2">Add Laptop</a>
+                <a href="/Admin/CreateDevice?empId=@Model.empId&deviceType=Keyboard" class="btn btn-primary me-2">Add Keyboard</a>
+                <a href="/Admin/CreateDevice?empId=@Model.empId&deviceType=Mouse" class="btn btn-primary">Add Mouse</a>
+            </p>
 
-<h3>Mice</h3>
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Brand</th>
-        <th>Status</th>
-        <th>Actions</th>
-    </tr>
-    @foreach (var mouse in Model.mouses ?? new List<Models.Mouse>())
-    {
-        <tr>
-            <td>@mouse.mouseId</td>
-            <td>@mouse.mouseBrand</td>
-            <td>@mouse.status</td>
-            <td>
-                <a href="/Admin/EditDevice?empId=@Model.empId&deviceType=Mouse&id=@mouse.mouseId">Edit</a> |
-                <a href="/Admin/DeleteDevice?empId=@Model.empId&deviceType=Mouse&id=@mouse.mouseId">Delete</a>
-            </td>
-        </tr>
-    }
-</table>
-<p><a href="/Admin/ManageEmployees">Back</a></p>
+            <!-- Laptops Table -->
+            <h3>Laptops</h3>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Host Name</th>
+                            <th>Model</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var laptop in Model.laptops ?? new List<Models.Laptop>())
+                        {
+                            <tr>
+                                <td>@laptop.lapHostName</td>
+                                <td>@laptop.lapModel</td>
+                                <td>@laptop.status</td>
+                                <td>
+                                    <a href="/Admin/EditDevice?empId=@Model.empId&deviceType=Laptop&id=@laptop.lapHostName" class="btn btn-sm btn-warning">Edit</a>
+                                    <a href="/Admin/DeleteDevice?empId=@Model.empId&deviceType=Laptop&id=@laptop.lapHostName" class="btn btn-sm btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Keyboards Table -->
+            <h3>Keyboards</h3>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Brand</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var keyboard in Model.keyboards ?? new List<Models.Keyboard>())
+                        {
+                            <tr>
+                                <td>@keyboard.keyId</td>
+                                <td>@keyboard.keyBrand</td>
+                                <td>@keyboard.status</td>
+                                <td>
+                                    <a href="/Admin/EditDevice?empId=@Model.empId&deviceType=Keyboard&id=@keyboard.keyId" class="btn btn-sm btn-warning">Edit</a>
+                                    <a href="/Admin/DeleteDevice?empId=@Model.empId&deviceType=Keyboard&id=@keyboard.keyId" class="btn btn-sm btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Mice Table -->
+            <h3>Mice</h3>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Brand</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var mouse in Model.mouses ?? new List<Models.Mouse>())
+                        {
+                            <tr>
+                                <td>@mouse.mouseId</td>
+                                <td>@mouse.mouseBrand</td>
+                                <td>@mouse.status</td>
+                                <td>
+                                    <a href="/Admin/EditDevice?empId=@Model.empId&deviceType=Mouse&id=@mouse.mouseId" class="btn btn-sm btn-warning">Edit</a>
+                                    <a href="/Admin/DeleteDevice?empId=@Model.empId&deviceType=Mouse&id=@mouse.mouseId" class="btn btn-sm btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <p class="text-center"><a href="/Admin/ManageEmployees" class="btn btn-secondary">Back</a></p>
+        </div>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-3 fixed-bottom">
+    <div class="container">
+        <p class="mb-0">Assest Management Service</p>
+    </div>
+</footer>

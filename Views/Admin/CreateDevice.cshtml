@@ -4,51 +4,113 @@
     var deviceType = ViewBag.DeviceType;
 }
 
-<h2>Create @deviceType</h2>
-<form asp-action="CreateDevice" method="post">
-    <input type="hidden" name="empId" value="@empId" />
-    <input type="hidden" name="deviceType" value="@deviceType" />
+<!-- Bootstrap CSS CDN -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-    @if (deviceType == "Laptop")
-    {
-        <label>Host Name</label>
-        <input name="lapHostName" /><br />
-        <label>Model</label>
-        <input name="lapModel" /><br />
-        <label>Processor</label>
-        <input name="processor" /><br />
-        <label>Storage</label>
-        <input name="storage" /><br />
-        <label>RAM</label>
-        <input name="ram" /><br />
-        <label>Assigned On</label>
-        <input name="assignedOn" type="date" /><br />
-        <label>Status</label>
-        <input name="status" /><br />
-    }
-    else if (deviceType == "Keyboard")
-    {
-        <label>Keyboard ID</label>
-        <input name="keyId" /><br />
-        <label>Serial Number</label>
-        <input name="keyS_No" type="number" /><br />
-        <label>Brand</label>
-        <input name="keyBrand" /><br />
-        <label>Status</label>
-        <input name="status" /><br />
-    }
-    else if (deviceType == "Mouse")
-    {
-        <label>Mouse ID</label>
-        <input name="mouseId" /><br />
-        <label>Serial Number</label>
-        <input name="mouseS_No" type="number" /><br />
-        <label>Brand</label>
-        <input name="mouseBrand" /><br />
-        <label>Status</label>
-        <input name="status" /><br />
-    }
+<!-- Header -->
+<header class="bg-dark text-white py-3">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <h1 class="h4 mb-0">Assest Management Service</h1>
+            <nav>
+                <a href="/" class="text-white text-decoration-none me-3">Home</a>
+                <a href="/Account/Logout" class="text-white text-decoration-none">Logout</a>
+            </nav>
+        </div>
+    </div>
+</header>
 
-    <button type="submit">Create</button>
-    <a href="/Admin/ManageDevices?empId=@empId">Back</a>
-</form>
+<!-- Main Content -->
+<main class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <h2 class="text-center mb-4">Create @deviceType</h2>
+            <form asp-action="CreateDevice" method="post" class="bg-light p-4 rounded shadow">
+                <input type="hidden" name="empId" value="@empId" />
+                <input type="hidden" name="deviceType" value="@deviceType" />
+
+                @if (deviceType == "Laptop")
+                {
+                    <div class="mb-3">
+                        <label for="lapHostName" class="form-label">Host Name</label>
+                        <input type="text" name="lapHostName" class="form-control" placeholder="Enter host name" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="lapModel" class="form-label">Model</label>
+                        <input type="text" name="lapModel" class="form-control" placeholder="Enter model" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="processor" class="form-label">Processor</label>
+                        <input type="text" name="processor" class="form-control" placeholder="Enter processor" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="storage" class="form-label">Storage</label>
+                        <input type="text" name="storage" class="form-control" placeholder="Enter storage" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="ram" class="form-label">RAM</label>
+                        <input type="text" name="ram" class="form-control" placeholder="Enter RAM" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="assignedOn" class="form-label">Assigned On</label>
+                        <input type="date" name="assignedOn" class="form-control" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="status" class="form-label">Status</label>
+                        <input type="text" name="status" class="form-control" placeholder="Enter status" required />
+                    </div>
+                }
+                else if (deviceType == "Keyboard")
+                {
+                    <div class="mb-3">
+                        <label for="keyId" class="form-label">Keyboard ID</label>
+                        <input type="text" name="keyId" class="form-control" placeholder="Enter keyboard ID" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="keyS_No" class="form-label">Serial Number</label>
+                        <input type="number" name="keyS_No" class="form-control" placeholder="Enter serial number" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="keyBrand" class="form-label">Brand</label>
+                        <input type="text" name="keyBrand" class="form-control" placeholder="Enter brand" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="status" class="form-label">Status</label>
+                        <input type="text" name="status" class="form-control" placeholder="Enter status" required />
+                    </div>
+                }
+                else if (deviceType == "Mouse")
+                {
+                    <div class="mb-3">
+                        <label for="mouseId" class="form-label">Mouse ID</label>
+                        <input type="text" name="mouseId" class="form-control" placeholder="Enter mouse ID" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="mouseS_No" class="form-label">Serial Number</label>
+                        <input type="number" name="mouseS_No" class="form-control" placeholder="Enter serial number" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="mouseBrand" class="form-label">Brand</label>
+                        <input type="text" name="mouseBrand" class="form-control" placeholder="Enter brand" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="status" class="form-label">Status</label>
+                        <input type="text" name="status" class="form-control" placeholder="Enter status" required />
+                    </div>
+                }
+
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-primary">Create</button>
+                    <a href="/Admin/ManageDevices?empId=@empId" class="btn btn-secondary">Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-3 fixed-bottom">
+    <div class="container">
+        <p class="mb-0">Assest Management Service</p>
+    </div>
+</footer>
