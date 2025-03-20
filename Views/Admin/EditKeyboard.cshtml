@@ -1,0 +1,22 @@
+@model Models.Keyboard
+@{
+    ViewData["Title"] = "Edit Keyboard";
+    var empId = ViewBag.EmpId;
+}
+
+<h2>Edit Keyboard</h2>
+<form asp-action="EditDevice" method="post">
+    <input type="hidden" name="empId" value="@empId" />
+    <input type="hidden" name="deviceType" value="Keyboard" />
+    <input type="hidden" name="id" value="@Model.keyId" />
+
+    <label>Serial Number</label>
+    <input name="keyS_No" type="number" value="@Model.keyS_No" /><br />
+    <label>Brand</label>
+    <input name="keyBrand" value="@Model.keyBrand" /><br />
+    <label>Status</label>
+    <input name="status" value="@Model.status" /><br />
+
+    <button type="submit">Update</button>
+    <a href="/Admin/ManageDevices?empId=@empId">Back</a>
+</form>

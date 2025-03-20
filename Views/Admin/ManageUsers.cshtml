@@ -1,0 +1,30 @@
+@model List<Models.User>
+@{
+    ViewData["Title"] = "Manage Users";
+}
+
+<h2>Manage Users</h2>
+<p><a href="/Admin/CreateUser">Add User</a></p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Role</th>
+        <th>Employee ID</th>
+        <th>Actions</th>
+    </tr>
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@user.id</td>
+            <td>@user.userName</td>
+            <td>@user.role</td>
+            <td>@user.empId</td>
+            <td>
+                <a href="/Admin/EditUser?empId=@user.empId">Edit</a> |
+                <a href="/Admin/DeleteUser?empId=@user.empId">Delete</a>
+            </td>
+        </tr>
+    }
+</table>
+<p><a href="/Admin/Index">Back</a></p>

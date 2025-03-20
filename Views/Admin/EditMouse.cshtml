@@ -1,0 +1,22 @@
+@model Models.Mouse
+@{
+    ViewData["Title"] = "Edit Mouse";
+    var empId = ViewBag.EmpId;
+}
+
+<h2>Edit Mouse</h2>
+<form asp-action="EditDevice" method="post">
+    <input type="hidden" name="empId" value="@empId" />
+    <input type="hidden" name="deviceType" value="Mouse" />
+    <input type="hidden" name="id" value="@Model.mouseId" />
+
+    <label>Serial Number</label>
+    <input name="mouseS_No" type="number" value="@Model.mouseS_No" /><br />
+    <label>Brand</label>
+    <input name="mouseBrand" value="@Model.mouseBrand" /><br />
+    <label>Status</label>
+    <input name="status" value="@Model.status" /><br />
+
+    <button type="submit">Update</button>
+    <a href="/Admin/ManageDevices?empId=@empId">Back</a>
+</form>

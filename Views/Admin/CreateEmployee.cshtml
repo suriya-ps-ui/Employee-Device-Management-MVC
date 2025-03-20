@@ -1,0 +1,19 @@
+@model Models.EmployeeRequest
+@{
+    ViewData["Title"] = "Create Employee";
+}
+
+<h2>Create Employee</h2>
+<form action="CreateEmployee" method="post">
+    <label>Employee ID</label>
+    <input name="empId" /><br />
+
+    <label>Name</label>
+    <input name="empName" /><br />
+
+    <label>Department</label>
+    <input name="department" /><br />
+
+    <button type="submit">Create</button>
+    <a href="/Admin/ManageEmployees">Back</a>
+</form>

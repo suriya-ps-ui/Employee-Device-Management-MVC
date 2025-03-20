@@ -1,0 +1,17 @@
+@model Models.EmployeeRequest
+@{
+    ViewData["Title"] = "Edit Employee";
+}
+
+<h2>Edit Employee</h2>
+<form action="EditEmployee" method="post">
+    <input type="hidden" asp-for="empId" />
+    <label>Name</label>
+    <input name="empName" /><br />
+
+    <label>Department</label>
+    <input name="department" /><br />
+
+    <button type="submit">Update</button>
+    <a href="/Admin/ManageEmployees">Back</a>
+</form>

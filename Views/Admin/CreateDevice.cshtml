@@ -1,0 +1,54 @@
+@{
+    ViewData["Title"] = "Create " + ViewBag.DeviceType;
+    var empId = ViewBag.EmpId;
+    var deviceType = ViewBag.DeviceType;
+}
+
+<h2>Create @deviceType</h2>
+<form asp-action="CreateDevice" method="post">
+    <input type="hidden" name="empId" value="@empId" />
+    <input type="hidden" name="deviceType" value="@deviceType" />
+
+    @if (deviceType == "Laptop")
+    {
+        <label>Host Name</label>
+        <input name="lapHostName" /><br />
+        <label>Model</label>
+        <input name="lapModel" /><br />
+        <label>Processor</label>
+        <input name="processor" /><br />
+        <label>Storage</label>
+        <input name="storage" /><br />
+        <label>RAM</label>
+        <input name="ram" /><br />
+        <label>Assigned On</label>
+        <input name="assignedOn" type="date" /><br />
+        <label>Status</label>
+        <input name="status" /><br />
+    }
+    else if (deviceType == "Keyboard")
+    {
+        <label>Keyboard ID</label>
+        <input name="keyId" /><br />
+        <label>Serial Number</label>
+        <input name="keyS_No" type="number" /><br />
+        <label>Brand</label>
+        <input name="keyBrand" /><br />
+        <label>Status</label>
+        <input name="status" /><br />
+    }
+    else if (deviceType == "Mouse")
+    {
+        <label>Mouse ID</label>
+        <input name="mouseId" /><br />
+        <label>Serial Number</label>
+        <input name="mouseS_No" type="number" /><br />
+        <label>Brand</label>
+        <input name="mouseBrand" /><br />
+        <label>Status</label>
+        <input name="status" /><br />
+    }
+
+    <button type="submit">Create</button>
+    <a href="/Admin/ManageDevices?empId=@empId">Back</a>
+</form>

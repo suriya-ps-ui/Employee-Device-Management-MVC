@@ -1,0 +1,19 @@
+@model Models.LoginRequest
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h2>Login</h2>
+<form action="Login" method="post">
+    <label>Username</label>
+    <input name="username" /><br />
+
+    <label>Password</label>
+    <input name="password" type="password" /><br />
+
+    <button type="submit" >Login</button>
+    @if (!string.IsNullOrEmpty(ViewData.ModelState[""]?.Errors.FirstOrDefault()?.ErrorMessage))
+    {
+        <p style="color: red;">@ViewData.ModelState[""]?.Errors.FirstOrDefault()?.ErrorMessage</p>
+    }
+</form>

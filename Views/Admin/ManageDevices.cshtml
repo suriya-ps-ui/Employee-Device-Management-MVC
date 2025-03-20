@@ -1,0 +1,76 @@
+@model Models.Employee
+@{
+    ViewData["Title"] = "Manage Devices";
+}
+
+<h2>Manage Devices for @Model.empName</h2>
+<p><a href="/Admin/CreateDevice?empId=@Model.empId&deviceType=Laptop">Add Laptop</a> |
+   <a href="/Admin/CreateDevice?empId=@Model.empId&deviceType=Keyboard">Add Keyboard</a> |
+   <a href="/Admin/CreateDevice?empId=@Model.empId&deviceType=Mouse">Add Mouse</a></p>
+
+<h3>Laptops</h3>
+<table>
+    <tr>
+        <th>Host Name</th>
+        <th>Model</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+    @foreach (var laptop in Model.laptops ?? new List<Models.Laptop>())
+    {
+        <tr>
+            <td>@laptop.lapHostName</td>
+            <td>@laptop.lapModel</td>
+            <td>@laptop.status</td>
+            <td>
+                <a href="/Admin/EditDevice?empId=@Model.empId&deviceType=Laptop&id=@laptop.lapHostName">Edit</a> |
+                <a href="/Admin/DeleteDevice?empId=@Model.empId&deviceType=Laptop&id=@laptop.lapHostName">Delete</a>
+            </td>
+        </tr>
+    }
+</table>
+
+<h3>Keyboards</h3>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Brand</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+    @foreach (var keyboard in Model.keyboards ?? new List<Models.Keyboard>())
+    {
+        <tr>
+            <td>@keyboard.keyId</td>
+            <td>@keyboard.keyBrand</td>
+            <td>@keyboard.status</td>
+            <td>
+                <a href="/Admin/EditDevice?empId=@Model.empId&deviceType=Keyboard&id=@keyboard.keyId">Edit</a> |
+                <a href="/Admin/DeleteDevice?empId=@Model.empId&deviceType=Keyboard&id=@keyboard.keyId">Delete</a>
+            </td>
+        </tr>
+    }
+</table>
+
+<h3>Mice</h3>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Brand</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+    @foreach (var mouse in Model.mouses ?? new List<Models.Mouse>())
+    {
+        <tr>
+            <td>@mouse.mouseId</td>
+            <td>@mouse.mouseBrand</td>
+            <td>@mouse.status</td>
+            <td>
+                <a href="/Admin/EditDevice?empId=@Model.empId&deviceType=Mouse&id=@mouse.mouseId">Edit</a> |
+                <a href="/Admin/DeleteDevice?empId=@Model.empId&deviceType=Mouse&id=@mouse.mouseId">Delete</a>
+            </td>
+        </tr>
+    }
+</table>
+<p><a href="/Admin/ManageEmployees">Back</a></p>

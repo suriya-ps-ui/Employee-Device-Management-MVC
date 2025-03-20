@@ -1,8 +1,21 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@{
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h2>Welcome</h2>
+@if ((bool)ViewData["IsAuthenticated"] == false)
+{
+    <p><a href="/Account/Login">Login</a></p>
+}
+else
+{
+    @if (ViewData["Role"]?.ToString() == "Admin")
+    {
+        <p><a href="/Admin/Index">Admin Dashboard</a></p>
+    }
+    else
+    {
+        <p><a href="/Employee/Devices">My Devices</a></p>
+    }
+    <p><a href="/Account/Logout">Logout</a></p>
+}

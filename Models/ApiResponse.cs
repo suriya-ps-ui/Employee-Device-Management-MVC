@@ -1,5 +1,5 @@
 namespace Models{
     public class ApiResponse{
-        public string? token{get;set;}
+        public required string token{get;set;}
     }
 }

@@ -1,0 +1,58 @@
+@model Models.Employee
+@{
+    ViewData["Title"] = "My Devices";
+}
+
+<h2>My Devices - @Model.empName</h2>
+
+<h3>Laptops</h3>
+<table>
+    <tr>
+        <th>Host Name</th>
+        <th>Model</th>
+        <th>Status</th>
+    </tr>
+    @foreach (var laptop in Model.laptops ?? new List<Models.Laptop>())
+    {
+        <tr>
+            <td>@laptop.lapHostName</td>
+            <td>@laptop.lapModel</td>
+            <td>@laptop.status</td>
+        </tr>
+    }
+</table>
+
+<h3>Keyboards</h3>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Brand</th>
+        <th>Status</th>
+    </tr>
+    @foreach (var keyboard in Model.keyboards ?? new List<Models.Keyboard>())
+    {
+        <tr>
+            <td>@keyboard.keyId</td>
+            <td>@keyboard.keyBrand</td>
+            <td>@keyboard.status</td>
+        </tr>
+    }
+</table>
+
+<h3>Mice</h3>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Brand</th>
+        <th>Status</th>
+    </tr>
+    @foreach (var mouse in Model.mouses ?? new List<Models.Mouse>())
+    {
+        <tr>
+            <td>@mouse.mouseId</td>
+            <td>@mouse.mouseBrand</td>
+            <td>@mouse.status</td>
+        </tr>
+    }
+</table>
+<p><a href="/Home/Index">Back</a> | <a href="/Account/Logout">Logout</a></p>

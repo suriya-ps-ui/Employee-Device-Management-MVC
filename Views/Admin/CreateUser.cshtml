@@ -1,0 +1,25 @@
+@model Models.RegisterRequest
+@{
+    ViewData["Title"] = "Create User";
+}
+
+<h2>Create User</h2>
+<form action="CreateUser" method="post">
+    <label>Username</label>
+    <input name="username" /><br />
+
+    <label>Password</label>
+    <input name="Password" type="password" /><br />
+
+    <label>Role</label>
+    <select name="role">
+        <option value="Admin">Admin</option>
+        <option value="Employee">Employee</option>
+    </select><br />
+
+    <label>Employee ID</label>
+    <input name="empId" /><br />
+
+    <button type="submit">Create</button>
+    <a href="/Admin/ManageUsers">Back</a>
+</form>

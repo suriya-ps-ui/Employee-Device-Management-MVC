@@ -1,31 +1,26 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using EmployeeDeviceManagementMVC.Models;
+using System.IdentityModel.Tokens.Jwt;
 
-namespace EmployeeDeviceManagementMVC.Controllers;
-
-public class HomeController : Controller
+namespace Controllers
 {
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
+    public class HomeController : Controller
     {
-        _logger = logger;
-    }
-
-    public IActionResult Index()
-    {
-        return View();
-    }
-
-    public IActionResult Privacy()
-    {
-        return View();
-    }
-
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        public IActionResult Index()
+        {
+            var token = HttpContext.Session.GetString("JWToken");
+            if (string.IsNullOrEmpty(token))
+            {
+                ViewData["IsAuthenticated"] = false;
+            }
+            else
+            {
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var jwtToken = tokenHandler.ReadJwtToken(token);
+                ViewData["IsAuthenticated"] = true;
+                ViewData["Username"] = jwtToken.Claims.FirstOrDefault(c => c.Type == "unique_name")?.Value;
+                ViewData["Role"] = jwtToken.Claims.FirstOrDefault(c => c.Type == "role")?.Value;
+            }
+            return View();
+        }
     }
 }
